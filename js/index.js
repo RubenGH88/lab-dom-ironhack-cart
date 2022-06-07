@@ -41,18 +41,40 @@ totalHolder.innerText=total
 // ITERATION 4
 
 function removeProduct(event) {
+
   const target = event.currentTarget;
   console.log('The target in remove is:', target);
-  //... your code goes here
+  target.parentNode.parentNode.remove()
+  
+  
 }
 
 // ITERATION 5
 
-function createProduct() {
+function createProduct(event) {
   //... your code goes here
+
+
+ let newName = document.querySelector(".create-product input[type=text");
+  console.log(newName)
+
+
+  let newPrice = document.querySelector(".create-product input[type=number]");
+ console.log(newPrice)
+
+
+
+  
 }
 
 window.addEventListener('load', () => {
+  const removeButton =document.querySelectorAll(".btn-remove")
+  removeButton.forEach((button)=>{button.addEventListener("click",removeProduct)})
+
+
+  const createButton =document.querySelectorAll("#create")
+  createButton.forEach((button)=>{button.addEventListener("click",createProduct)})
+
   const calculatePricesBtn = document.getElementById('calculate');
   calculatePricesBtn.addEventListener('click', calculateAll);
 
