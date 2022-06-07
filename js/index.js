@@ -52,19 +52,67 @@ function removeProduct(event) {
 // ITERATION 5
 
 function createProduct(event) {
-  //... your code goes here
+ 
+  let product = document.createElement("tr");
+  product.className="product"
 
 
- let newName = document.querySelector(".create-product input[type=text");
-  console.log(newName)
 
+  let nameHolder = document.querySelector(".create-product input[type=text");
+  let newName = document.createElement("td");
+  newName.className="name"
+ newName.innerHTML=`<span>${nameHolder.value}</span>`
+  product.appendChild(newName)
+ 
 
-  let newPrice = document.querySelector(".create-product input[type=number]");
- console.log(newPrice)
 
 
 
   
+ let priceHolder = document.querySelector(".create-product input[type=number]");
+ let newPrice = document.createElement("td");
+ newPrice.className="price"
+ let floatPrice=parseFloat(priceHolder.value).toFixed(2)
+ newPrice.innerHTML=`$<span>${floatPrice}</span>`
+ product.appendChild(newPrice)
+
+
+ let quantityCell = document.createElement("td");
+ quantityCell.className="quantity"
+ let newQuantity=document.createElement("input")
+ newQuantity.type="number"
+ newQuantity.value="0"
+ newQuantity.min="0"
+ newQuantity.placeholder="Quantity"
+quantityCell.appendChild(newQuantity)
+ product.appendChild(quantityCell)
+
+
+
+ let subtotalCell = document.createElement("td");
+ subtotalCell.className="subtotal"
+ subtotalCell.innerHTML="$<span>0</<span>"
+ product.appendChild(subtotalCell)
+
+
+
+ let buttonCell = document.createElement("td");
+ buttonCell.className="action";
+ let newButton = document.createElement("button");
+ newButton.className="btn btn-remove"
+ newButton.innerHTML="Remove"
+ buttonCell.appendChild(newButton)
+ product.appendChild(buttonCell)
+
+
+let productList = document.querySelector("#cart tbody");
+ productList.appendChild(product)
+  
+
+
+
+ const removeButton =document.querySelectorAll(".btn-remove")
+  removeButton.forEach((button)=>{button.addEventListener("click",removeProduct)})
 }
 
 window.addEventListener('load', () => {
